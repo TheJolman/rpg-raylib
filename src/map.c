@@ -76,14 +76,8 @@ void map_draw(Map *map)
 {
     for (uint32_t y = 0; y < map->height; y++)
     {
-#ifdef DEBUG // debug grid
-        DrawLine(0, y * MAP_TILE_SIZE, map->width * MAP_TILE_SIZE, y * MAP_TILE_SIZE, RED);
-#endif
         for (uint32_t x = 0; x < map->width; x++)
         {
-#ifdef DEBUG // debug grid
-            DrawLine(x * MAP_TILE_SIZE, 0, x * MAP_TILE_SIZE, map->height * MAP_TILE_SIZE, RED);
-#endif
             Color color = {};
             // TODO: Replace this with a tileset
             switch (map->data[y * map->width + x])
