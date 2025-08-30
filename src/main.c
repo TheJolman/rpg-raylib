@@ -102,7 +102,8 @@ int main(int argc, const char **argv)
         draw_game(map);
     }
 
-    map_destroy(map);
+    free(map->data);
+    free(map);
 
     CloseWindow();
     return 0;

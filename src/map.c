@@ -65,14 +65,6 @@ Result map_load_from_csv(const char *file_path)
     return (Result){.value = map, .err = nullptr};
 }
 
-void map_destroy(Map *map)
-{
-    free(map->data);
-    map->data = nullptr;
-    free(map);
-    map = nullptr;
-}
-
 void map_draw(Map *map)
 {
     for (uint32_t y = 0; y < map->height; y++)

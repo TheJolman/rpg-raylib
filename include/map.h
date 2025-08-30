@@ -43,13 +43,6 @@ typedef struct
 Result map_load_from_csv(const char *file_path);
 
 /**
- * @brief Frees resources held by a map object
- *
- * @param map map to free
- */
-void map_destroy(Map *map);
-
-/**
  * @brief Renders the map to the screen
  *
  * @param map Pointer to the map to render
