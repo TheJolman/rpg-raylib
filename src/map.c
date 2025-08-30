@@ -79,7 +79,6 @@ void map_draw(Map *map)
         for (uint32_t x = 0; x < map->width; x++)
         {
             Color color = {};
-            // TODO: Replace this with a tileset
             switch (map->data[y * map->width + x])
             {
             case 0:
@@ -92,7 +91,7 @@ void map_draw(Map *map)
                 color = BLUE;
                 break;
             default:
-                color = WHITE;
+                color = RED;
                 break;
             }
             Rectangle rec = (Rectangle){.x = x * MAP_TILE_SIZE,
