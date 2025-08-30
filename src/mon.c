@@ -76,6 +76,5 @@ void destroy_mon(Mon *mon)
             free((char *)mon->name);
         }
         free(mon);
-        mon = nullptr;
     }
 }
