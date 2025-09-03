@@ -12,6 +12,8 @@
   llvmPackages_20,
   cppcheck,
   doxygen,
+  cmake-format,
+  cmake-lint,
 }:
 mkShellNoCC {
   packages =
@@ -25,6 +27,8 @@ mkShellNoCC {
       llvmPackages_20.clang-tools
       cppcheck
       doxygen
+      cmake-format
+      cmake-lint
     ]
     ++ lib.optional (!stdenv.hostPlatform.isDarwin) valgrind;
 

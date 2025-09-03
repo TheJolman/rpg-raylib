@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if command -v clang-tidy &> /dev/null; then
-    echo "Running clang-tidy..."
+if command -v cppcheck &> /dev/null; then
+    echo "Running cppcheck..."
     cppcheck --project=build/compile_commands.json "$@"
 else
     echo "Error: cppcheck not found in PATH"

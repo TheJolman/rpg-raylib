@@ -18,6 +18,6 @@ jobs:
       - name: Build project
         run: nix develop --command bash -c "cmake -B build -S . && cmake --build build"
       - name: Format check
-        run: nix develop --command bash -c "./scripts/clang-format.sh && git diff --exit-code"
+        run: nix develop --command bash -c "./scripts/format.sh && git diff --exit-code"
       - name: Check
-        run: nix develop --command cmake --build build --target check
+        run: nix develop --command bash -c "./scripts/check.sh --error-exitcode=2"
