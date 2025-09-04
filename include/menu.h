@@ -6,27 +6,31 @@
 #pragma once
 
 #include "raylib.h"
-#include "utils.h"
 #include <stdint.h>
-
-typedef enum
-{
-    MENU_LAYOUT_VERTICAL,
-    MENU_LAYOUT_GRID,
-} MenuLayoutType;
 
 /**
  * @brief Individual menu item structure
  */
 typedef struct
 {
-    const char *text;     ///< Text to display for this menu item
+    char *text;           ///< Text to display for this menu item
     int pos_x;            ///< X position for rendering
     int pos_y;            ///< Y position for rendering
     uint16_t font_size;   ///< Font size for text rendering
     Color color;          ///< Text color
     void (*select)(void); ///< Function to call when item is selected
 } MenuItem;
+
+/**
+ * @brief Grid navigation helper structure
+ */
+typedef struct
+{
+    uint16_t num_rows;    ///< Number of rows in the grid
+    uint16_t num_cols;    ///< Number of columns in the grid
+    uint16_t current_row; ///< Currently selected row
+    uint16_t current_col; ///< Currently selected column
+} Grid;
 
 /**
  * @brief Menu arranged in a grid layout
@@ -37,10 +41,7 @@ typedef struct
     void (*move_right)(const void *); ///< Function to handle right movement
     void (*move_down)(const void *);  ///< Function to handle down movement
     void (*move_up)(const void *);    ///< Function to handle up movement
-    uint16_t num_rows;                ///< Number of rows in the grid
-    uint16_t num_cols;                ///< Number of columns in the grid
-    uint16_t current_row;             ///< Currently selected row
-    uint16_t current_col;             ///< Currently selected column
+    Grid grid;                        ///< Grid navigation state
     uint16_t num_items;               ///< Total number of menu items
     MenuItem *items[];                ///< Array of menu item pointers
 } GridMenu;
@@ -58,26 +59,35 @@ typedef struct
     MenuItem items[];                ///< Array of menu items
 } VerticalMenu;
 
-typedef struct
-{
-    const char *title;
-    Rectangle rect;
-    uint16_t font_size;
-    MenuLayoutType layout;
-    uint16_t num_rows; // For grid layout
-    uint16_t num_cols; // For grid layout
-} MenuConfig;
+/**
+ * @brief Creates a new grid menu
+ *
+ * @param num_items Total number of menu items
+ * @param num_rows Number of rows in the grid
+ * @param num_cols Number of columns in the grid
+ * @return Pointer to the created grid menu
+ */
+GridMenu *grid_menu_create(const uint16_t num_items, const uint16_t num_rows,
+                           const uint16_t num_cols);
 
-typedef struct
-{
-    MenuConfig config;
-    void *menu_type; // Pointer to VerticalMenu or GridMenu
-    uint16_t num_items;
-    MenuItem *items;
-} Menu;
+/**
+ * @brief Destroys a grid menu and frees its memory
+ *
+ * @param menu Pointer to the grid menu to destroy
+ */
+void grid_menu_destroy(GridMenu *menu);
 
-Result menu_create(const MenuConfig *config, const char **item_texts,
-                   void (**select_callbacks)(void), const uint16_t num_items);
-void menu_destroy(Menu *menu);
-void menu_handle_input(Menu *menu);
-void menu_draw(const Menu *menu);
+/**
+ * @brief Creates a new vertical menu
+ *
+ * @param num_items Number of menu items
+ * @return Pointer to the created vertical menu
+ */
+VerticalMenu *vertical_menu_create(const uint16_t num_items);
+
+/**
+ * @brief Destroys a vertical menu and frees its memory
+ *
+ * @param menu Pointer to the vertical menu to destroy
+ */
+void vertical_menu_destroy(VerticalMenu *menu);
