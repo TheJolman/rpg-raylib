@@ -20,7 +20,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in {
         packages.default =
-          pkgs.callPackage ./nix/default.nix {};
+          pkgs.callPackage ./nix/package.nix {};
         devShells.default =
           pkgs.callPackage ./nix/shell.nix {};
       }
