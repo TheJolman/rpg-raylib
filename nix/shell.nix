@@ -21,7 +21,7 @@ mkShellNoCC {
       cmake
       pkg-config
       ninja
-      llvmPackages_20.clangUseLLVM
+      llvmPackages_20.clang
       gdb
       lldb
       llvmPackages_20.clang-tools
