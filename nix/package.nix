@@ -3,24 +3,28 @@
   cmake,
   ninja,
   raylib,
-}:
-stdenv.mkDerivation {
-  name = "rpg-raylib";
-  version = "0.1.0";
-  src = ../.;
+  llvmPackages_20,
+}: let
+  myStdenv = stdenv.override {
+    cc = llvmPackages_20.clang;
+  };
+in
+  myStdenv.mkDerivation {
+    name = "rpg-raylib";
+    version = "0.1.0";
+    src = ../.;
 
-  nativeBuildInputs = [
-    clang
-    cmake
-    ninja
-  ];
+    nativeBuildInputs = [
+      cmake
+      ninja
+    ];
 
-  buildInputs = [
-    raylib
-  ];
+    buildInputs = [
+      raylib
+    ];
 
-  cmakeFlags = [
-    "-DCMAKE_BUILD_TYPE=Release"
-    "-G Ninja"
-  ];
-}
+    cmakeFlags = [
+      "-DCMAKE_BUILD_TYPE=Release"
+      "-G Ninja"
+    ];
+  }
