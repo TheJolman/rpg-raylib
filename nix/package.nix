@@ -10,6 +10,7 @@ stdenv.mkDerivation {
   src = ../.;
 
   nativeBuildInputs = [
+    clang
     cmake
     ninja
   ];
