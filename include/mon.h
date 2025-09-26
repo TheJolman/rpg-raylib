@@ -55,9 +55,10 @@ typedef struct
  * @brief Creates a new monster with the given name
  *
  * @param name The name of the monster to create
+ * @param level The level of the monster to create
  * @return Result containing the created monster or error information
  */
-Result create_mon(char *name);
+Result create_mon(char *name, unsigned level);
 
 /**
  * @brief Destroys a monster and frees its resources

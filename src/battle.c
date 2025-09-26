@@ -187,7 +187,7 @@ static void _init_battle_state(void)
     // Initialize monsters (here froge is hardcoded in)
     if (!ctx.player_mon)
     {
-        Result res = create_mon("froge");
+        Result res = create_mon("froge", 10);
         if (res.err)
             error_exit(1, "%s", res.err);
 
@@ -198,7 +198,7 @@ static void _init_battle_state(void)
 
     if (!ctx.enemy_mon)
     {
-        Result res = create_mon("froge");
+        Result res = create_mon("froge", 10);
         if (res.err)
             error_exit(1, "%s", res.err);
 
