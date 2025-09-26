@@ -1,11 +1,12 @@
 {
     "name": "bob",
     "base-stats": {
+        "hp": 100,
         "attack": 10,
         "defence": 10,
         "speed": 10
     },
-    "stats-on-level-up": {
+    "stats-gained-on-level": {
         "attack": 2,
         "defence": 2,
         "speed": 2
